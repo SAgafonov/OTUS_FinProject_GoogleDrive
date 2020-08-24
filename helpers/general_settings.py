@@ -1,9 +1,6 @@
 import os
 import pathlib
 
-EMAIL = "siarhei.ahafonau@gmail.com"
-PASSWORD = "q_XEgUTnZnQ25aH"
-
 # _CURRENT_DIRECTORY = os.path.abspath(os.getcwd())
 _CURRENT_DIRECTORY = pathlib.Path(__file__).parent.absolute()
 

@@ -90,7 +90,7 @@ class AuthorizedPage(LoginPage):
     def open_settings_page(self):
         self.check_if_user_menu_opened()
         try:
-            self.look_for_element(selector=AUTHORIZED_ZONE_CSS_SELECTORS["settings_page_title"], timeout=3).text != SETTINGS_PAGE_TITLE
+            self.look_for_element(selector=AUTHORIZED_ZONE_CSS_SELECTORS["settings_page_title"], timeout=5).text != SETTINGS_PAGE_TITLE
         except:
             logger.info("Open Settings page")
             self.look_for_element(selector=AUTHORIZED_ZONE_CSS_SELECTORS["user_menu_settings_item"]).click()
@@ -174,6 +174,7 @@ class AuthorizedPage(LoginPage):
 
     @allure.step("Remove avatar")
     def remove_avatar(self):
+        logger.debug("Click 'Delete' avatar btn")
         self.look_for_element(selector=AUTHORIZED_ZONE_CSS_SELECTORS["avatar_button"]).click()
         self.save_changes()
 

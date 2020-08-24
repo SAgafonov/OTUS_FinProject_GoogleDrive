@@ -24,9 +24,8 @@ class Executor:
             caps = DesiredCapabilities.CHROME
             caps["loggingPrefs"] = {"performance": "ALL", "browser": "ALL"}
             options = ChromeOptions()
-            # options.add_argument('--headless')
-            options.add_argument(
-                '--window-size=1200x600')  # Исправляет ошибку, когде не видны элементы фильтра продукта в headless режиме
+            options.add_argument('--headless')
+            options.add_argument('--window-size=1920x1080')
             options.add_argument('--start-fullscreen')
             options.add_argument('--ignore-certificate-errors')
             options.add_experimental_option("w3c", False)
