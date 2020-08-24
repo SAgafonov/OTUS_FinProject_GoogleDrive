@@ -18,8 +18,6 @@ class LoginPage(BasePage):
     @allure.step("Navigate to login page")
     def open_login_page(self):
         self.open_page()
-        # logger.info("Press button to open login page")
-        # self.look_for_element(selector=LOGIN_PAGE_CSS_SELECTORS["log_in_button"]).click()
 
     @allure.step("Enter username")
     def set_username(self):

@@ -25,21 +25,21 @@ def pytest_addoption(parser):
         "--remote_type",
         required=False,
         default="local",
-        choices=["local", "local_grid", "cloud", "selenoid"],
-        help="Defines how to run tests: locally, using grid, cloud service or selenoid. "
-             "Available values: local, local_grid, cloud, selenoid"
+        choices=["local", "selenoid"],
+        help="Defines how to run tests: locally or selenoid. "
+             "Available values: local, selenoid"
     )
     parser.addoption(
         "--browser",
         required=False,
         default="chrome",
-        choices=["chrome", "firefox"],
-        help="Browser to test. Available browsers: Chrome, Firefox"
+        choices=["chrome"],
+        help="Browser to test. Available browsers: Chrome"
     )
     parser.addoption(
         "--executor-url",
         required=False,
-        default="http://192.168.0.108:4444/wd/hub/",
+        default="#",
         help="Defines URL where tests will be executed"
     )
 

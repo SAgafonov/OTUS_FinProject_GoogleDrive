@@ -1,7 +1,7 @@
 from helpers.event_listener import MyListener
 from helpers.general_settings import PATH_TO_LOGS
 from selenium import webdriver
-from selenium.webdriver import ChromeOptions, FirefoxOptions, FirefoxProfile
+from selenium.webdriver import ChromeOptions, FirefoxOptions
 from selenium.webdriver.support.events import EventFiringWebDriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
@@ -25,12 +25,6 @@ class Executor:
             caps["loggingPrefs"] = {"performance": "ALL", "browser": "ALL"}
             options = ChromeOptions()
             # options.add_argument('--headless')
-            # options.add_argument("User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36")
-            # options.add_argument("Accept-Language: ru,en-US;q=0.9,en;q=0.8")
-            # options.add_argument("Accept-Encoding: gzip, deflate, br")
-            # options.add_argument("Accept: */*")
-            # options.add_argument("cookie: CONSENT=YES+BY.ru+202003; 1P_JAR=2020-08-23-14; SEARCH_SAMESITE=CgQIwZAB; ACCOUNT_CHOOSER=AFx_qI6CpPWIneXOGTSdoRkEdLYfZOpvULdXmg-5QL3jv2-7FhXefzijLKlMH5m6FHmCt3mHzgUlqyoe55RGP2I9LGpfz-dXJnPaC8mm34Z5sB7GNDRffsBC1dThfju_zkJy0heguzyDK73Ai3UGByMyB3C9UqAIeg; NID=204=BrhA6ED2VJgNVVP0YgpypICDY3ogcST69K2wZ5JQ1VVX_JoDe8xswIAylJyCH6Ydc4MYoiMLP6EcuuYXmCkKdt6MJkqdqXJMhBsOQncYT6K9-bnmfyMGBxlLV9Necaib841AFVS_T5ty9ReVLgDsecatE93wcAEzEw3oERxAlQA; GAPS=1:QU1k3BN0Lq8bOLjRdr_BFpzftzBq5RC_QwoygfJ6LgrPcad30-An8bAS1ohVclHQnYrzV-JRVcKIrL9-QPCvFt8ffYHLZQ:yW761pGrBz8lCc32; __Host-GAPS=1:QU1k3BN0Lq8bOLjRdr_BFpzftzBq5RC_QwoygfJ6LgrPcad30-An8bAS1ohVclHQnYrzV-JRVcKIrL9-QPCvFt8ffYHLZQ:yW761pGrBz8lCc32")
-
             options.add_argument(
                 '--window-size=1200x600')  # Исправляет ошибку, когде не видны элементы фильтра продукта в headless режиме
             options.add_argument('--start-fullscreen')
@@ -56,12 +50,12 @@ class Executor:
                 ), MyListener()
                 )
                 return wd
-        else:
+        elif self._remote_type == "selenoid":
             desired_cap = {
                 'browserName': self._browser,
                 # 'version': "65.0",
-                'enableVNC': True,
-                'enableVideo': True,
+                # 'enableVNC': True,
+                # 'enableVideo': True,
                 # 'enableLog': True,
                 'name': "Selenoid"
             }

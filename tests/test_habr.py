@@ -66,15 +66,33 @@ class TestAuthorizedZone:
         assert upload_avatar_button == UPLOAD_AVATAR_BUTTON
         logger.info("========> End check_settings_page test <========\n")
 
-    def test_change_gender(self):
-        pass
+    @allure.title("Check that 'Region' is disabled if country is not set")
+    def test_default_location(self, authorized_user):
+        logger.info("<======== Run default_location test ========>")
+        assert authorized_user.reset_country()
+        logger.info("========> End default_location test <========\n")
 
-    def test_change_location(self):
-        pass
+    @allure.title("Check changing the location")
+    def test_change_location(self, authorized_user):
+        logger.info("<======== Run change_location test ========>")
+        assert not authorized_user.change_country()
+        logger.info("========> End change_location test <========\n")
 
-    def test_change_avatar(self):
-        pass
+    @allure.title("Check changing the region")
+    def test_change_region(self, authorized_user):
+        logger.info("<======== Run change_region test ========>")
+        assert not authorized_user.change_region()
+        logger.info("========> End change_region test <========\n")
+
+    @allure.title("Check uploading the avatar")
+    def test_change_avatar(self, authorized_user):
+        logger.info("<======== Run change_avatar test ========>")
+        assert authorized_user.check_if_avatar_in_user_icon()
+        logger.info("========> End change_avatar test <========\n")
 
     @allure.title("Log out")
-    def test_logout(self):
-        pass
+    def test_logout(self, authorized_user):
+        logger.info("<======== Run logout test ========>")
+        authorized_user.logout()
+        assert authorized_user.look_for_element(selector=LOGIN_PAGE_CSS_SELECTORS["log_in_button"])
+        logger.info("========> End logout test <========\n")
