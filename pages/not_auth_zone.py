@@ -1,7 +1,7 @@
 import allure
 import logging
-from helpers.general_settings import EMAIL, PASSWORD
 from helpers.used_selectors import LOGIN_PAGE_CSS_SELECTORS
+from pytest_testconfig import config
 from .base import BasePage
 
 logger = logging.getLogger(__name__)
@@ -27,7 +27,7 @@ class LoginPage(BasePage):
         logger.info("Clear email field")
         login_input.clear()
         logger.info("Enter email")
-        login_input.send_keys(EMAIL)
+        login_input.send_keys(config["email"])
 
     @allure.step("Enter password")
     def set_password(self):
@@ -37,7 +37,7 @@ class LoginPage(BasePage):
         logger.info("Clear password field")
         password_input.clear()
         logger.info("Enter password")
-        password_input.send_keys(PASSWORD)
+        password_input.send_keys(config["password"])
 
     @allure.step("Log in")
     def login(self):
