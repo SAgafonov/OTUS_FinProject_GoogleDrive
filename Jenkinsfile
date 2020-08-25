@@ -17,5 +17,16 @@ pipeline {
 				sh 'docker run my_tests'
 			}
 		}
+		stage('Report') {
+			steps {
+				script {
+					allure ([
+						includeProperties: false, 
+						jdk: '', 
+						results: [[path: 'allure-report']]
+					])
+				}
+			}
+		}
 	}
 }
