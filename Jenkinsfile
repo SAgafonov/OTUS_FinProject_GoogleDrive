@@ -20,18 +20,19 @@ pipeline {
 			} catch (e) {
 				currentBuild.result = 'FAILURE'
             			throw e
-			} finally {}
-		}
-		stage('Report') {
-			steps {
-				sh 'docker cp tests:/home/app/allure-report/ /var/jenkins_home/workspace/finProject/target/'
-				script {
-					allure ([
-						includeProperties: false, 
-						jdk: '',
-						report: 'target/allure-results',
-						results: [[path: 'target/allure-report']]
-					])
+			} finally {
+				stage('Report') {
+					steps {
+						sh 'docker cp tests:/home/app/allure-report/ /var/jenkins_home/workspace/finProject/target/'
+						script {
+							allure ([
+								includeProperties: false, 
+								jdk: '',
+								report: 'target/allure-results',
+								results: [[path: 'target/allure-report']]
+							])
+						}
+					}
 				}
 			}
 		}
