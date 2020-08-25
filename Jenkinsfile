@@ -12,27 +12,26 @@ pipeline {
 				sh 'docker build -f Dockerfile -t my_tests .'
 			}
 		}
-		try {
-			stage('Run Tests') {
+		stage('Run Tests') {
+			try {
 				steps {
 					sh 'docker run --name tests my_tests'
 				}
+			} catch (e) {
+				currentBuild.result = 'FAILURE'
+            			throw e
 			}
-		} catch (e) {
-			currentBuild.result = 'FAILURE'
-            		throw e
-		} finally {
-			stage('Report') {
-				steps {
-					sh 'docker cp tests:/home/app/allure-report/ /var/jenkins_home/workspace/finProject/target/'
-					script {
-						allure ([
-							includeProperties: false, 
-							jdk: '',
-							report: 'target/allure-results',
-							results: [[path: 'target/allure-report']]
-						])
-					}
+		}
+		stage('Report') {
+			steps {
+				sh 'docker cp tests:/home/app/allure-report/ /var/jenkins_home/workspace/finProject/target/'
+				script {
+					allure ([
+						includeProperties: false, 
+						jdk: '',
+						report: 'target/allure-results',
+						results: [[path: 'target/allure-report']]
+					])
 				}
 			}
 		}
