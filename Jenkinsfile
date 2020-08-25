@@ -20,7 +20,7 @@ pipeline {
 			} catch (e) {
 				currentBuild.result = 'FAILURE'
             			throw e
-			}
+			} finally {}
 		}
 		stage('Report') {
 			steps {
