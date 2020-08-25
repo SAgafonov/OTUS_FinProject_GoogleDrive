@@ -53,8 +53,8 @@ class Executor:
             desired_cap = {
                 'browserName': self._browser,
                 # 'version': "65.0",
-                'enableVNC': True,
-                'enableVideo': True,
+                # 'enableVNC': True,
+                # 'enableVideo': True,
                 # 'enableLog': True,
                 'name': "Selenoid"
             }
