@@ -22,8 +22,9 @@ pipeline {
 				script {
 					allure ([
 						includeProperties: false, 
-						jdk: '', 
-						results: [[path: '/var/jenkins_home/workspace/finProject/allure-report/']]
+						jdk: '',
+						report: 'allure_result', 
+						results: [[path: 'allure-report']]
 					])
 				}
 			}
