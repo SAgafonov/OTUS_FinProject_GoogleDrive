@@ -14,11 +14,12 @@ pipeline {
 		}
 		stage('Run Tests') {
 			steps {
-				sh 'docker run my_tests'
+				sh 'docker run --name tests my_tests'
 			}
 		}
 		stage('Report') {
 			steps {
+				sh 'docker cp tests:/home/app/allure-report/ /var/jenkins_home/workspace/finProject
 				script {
 					allure ([
 						includeProperties: false, 
