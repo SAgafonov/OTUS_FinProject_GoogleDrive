@@ -22,9 +22,8 @@ pipeline {
 				script {
 					allure ([
 						includeProperties: false, 
-						jdk: '',
-						report: 'allure_result', 
-						results: [[path: 'finProject/allure-report']]
+						jdk: '', 
+						results: [[path: 'allure-report']]
 					])
 				}
 			}
