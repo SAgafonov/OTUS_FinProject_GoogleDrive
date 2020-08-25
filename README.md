@@ -1,7 +1,7 @@
 # OTUS_FinProject_Habr_test
 To run tests email and password should be provided via pytest-config. Example:
 ```
-pytest --tc=email:{email} --tc=password:{password}
+pytest --tc=email:{email} --tc=password:{password} tests/test_habr.py
 ```
 
 Other keys:  
