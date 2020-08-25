@@ -19,12 +19,13 @@ pipeline {
 		}
 		stage('Report') {
 			steps {
-				sh 'docker cp tests:/home/app/allure-report/ /var/jenkins_home/workspace/finProject'
+				sh 'docker cp tests:/home/app/allure-report/ /var/jenkins_home/workspace/finProject/target/allure-report'
 				script {
 					allure ([
 						includeProperties: false, 
-						jdk: '', 
-						results: [[path: 'allure-report']]
+						jdk: '',
+						report: 'target/allure-results',
+						results: [[path: 'target/allure-report']]
 					])
 				}
 			}
