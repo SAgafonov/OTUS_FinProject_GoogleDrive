@@ -12,11 +12,16 @@ pipeline {
 				sh 'docker build -f Dockerfile -t my_tests .'
 			}
 		}
+		try {
 		stage('Run Tests') {
 			steps {
 				sh 'docker run --name tests my_tests'
 			}
 		}
+		} catch (e) {
+			currentBuild.result = 'FAILURE'
+            		throw e
+		} finally {
 		stage('Report') {
 			steps {
 				sh 'docker cp tests:/home/app/allure-report/ /var/jenkins_home/workspace/finProject/target/'
@@ -29,6 +34,7 @@ pipeline {
 					])
 				}
 			}
+		}
 		}
 	}
 }
